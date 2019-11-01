@@ -92,40 +92,167 @@ void mergeSort(int *saida, int *auxiliar, int inicio, int fim) {
 
 
 int main() {
-	int tamanho, i, *bbSort, *istSort, *mergeSort;
-	double tempo, tempoBubble, tempoInsert, tempoMerger;
+	// variáveis para definição dos métodos de ordenação
+	int tamanho1, tamanho2, tamanho3, tamanho4;
+	int *bbSort1, *bbSort2, *bbSort3, *bbSort4;
+	int *istSort1, *istSort2, *istSort3, *istSort4;
+	int *mergeSort;
+	int i;
 
-	tamanho = 1000;
+	// variáveis para calcular o tempo de execução
+	double tempo, tempoMerger;
+	double tempoBubble1, tempoBubble2, tempoBubble3, tempoBubble4;
+	double tempoInsert1, tempoInsert2, tempoInsert3, tempoInsert4;
 
-	bbSort = (int*)malloc(tamanho * sizeof(int));
-	istSort = (int*)malloc(tamanho * sizeof(int));
-	mergeSort = (int*)malloc(tamanho * sizeof(int));
+	tamanho1 = 1000;
+	tamanho2 = 2000;
+	tamanho3 = 3000;
+	tamanho4 = 4000;
+
+	bbSort1 = (int*)malloc(tamanho1 * sizeof(int));
+	bbSort2 = (int*)malloc(tamanho2 * sizeof(int));
+	bbSort3 = (int*)malloc(tamanho3 * sizeof(int));
+	bbSort4 = (int*)malloc(tamanho4 * sizeof(int));
 	
-	for (i = 0; i < tamanho; i++) {
+	
+	istSort1 = (int*)malloc(tamanho1 * sizeof(int));
+	istSort2 = (int*)malloc(tamanho2 * sizeof(int));
+	istSort3 = (int*)malloc(tamanho3 * sizeof(int));
+	istSort4 = (int*)malloc(tamanho4 * sizeof(int));
+
+	mergeSort = (int*)malloc(tamanho1 * sizeof(int));
+	
+	// Atribuição de valores aleatórios nos vetores
+	for (i = 0; i < tamanho1; i++) {
 		int valor = rand();
-		bbSort[i] = valor;
-		istSort[i] = valor;
+		
+		bbSort1[i] = valor;
+		istSort1[i] = valor;
+
 		mergeSort[i] = valor;
 	}
+
+	for (i = 0; i < tamanho2; i++) {
+		int valor = rand();
+		
+		if (i <= tamanho1) {
+			bbSort2[i] = bbSort1[i];
+			istSort2[i] = istSort1[i];
+		}
+		else {
+			bbSort2[i] = valor;
+			istSort2[i] = valor;
+		}
+	}
+
+	for (i = 0; i < tamanho3; i++) {
+		int valor = rand();
+
+		if (i <= tamanho2) {
+			bbSort3[i] = bbSort2[i];
+			istSort3[i] = istSort2[i];
+		}
+		else {
+			bbSort3[i] = valor;
+			istSort3[i] = valor;
+		}
+	}
+
+	for (i = 0; i < tamanho4; i++) {
+		int valor = rand();
+
+		if (i <= tamanho3) {
+			bbSort4[i] = bbSort3[i];
+			istSort4[i] = istSort3[i];
+		}
+		else {
+			bbSort4[i] = valor;
+			istSort4[i] = valor;
+		}
+	}
 	
+	// Calcular o tempo de execução da ordenação
+	// BubbleSort
 	tempo = clock();
-	tempoBubble = bubbleSort(bbSort, tamanho - 1);
-	tempoBubble = clock() - tempo;
-	
+	bubbleSort(bbSort1, tamanho1 - 1);
+	tempoBubble1 = clock() - tempo;
+
 	tempo = clock();
-	insertionSort(istSort, tamanho);
-	tempoInsert = clock() - tempo;
+	bubbleSort(bbSort2, tamanho2 - 1);	
+	tempoBubble2 = clock() - tempo;
+
+	tempo = clock();
+	bubbleSort(bbSort3, tamanho3 - 1);
+	tempoBubble3 = clock() - tempo;
+
+	tempo = clock();
+	bubbleSort(bbSort4, tamanho4 - 1);
+	tempoBubble4 = clock() - tempo;
+
+	// InsertSort
+	tempo = clock();
+	insertionSort(istSort1, tamanho1);
+	tempoInsert1 = clock() - tempo;
+
+	tempo = clock();
+	insertionSort(istSort2, tamanho2);
+	tempoInsert2 = clock() - tempo;
+
+	tempo = clock();
+	insertionSort(istSort3, tamanho3);
+	tempoInsert3 = clock() - tempo;
+
+	tempo = clock();
+	insertionSort(istSort4, tamanho4);
+	tempoInsert4 = clock() - tempo;
 	
-	
-	for (i = 0; i < tamanho; i++) {
-		printf("%d ", bbSort[i]);
-		printf("\t");
-		printf("%d ", istSort[i]);
+	printf("Ordenacao 1\n");
+	for (i = 0; i < tamanho1; i++) {
+		printf("%d ", bbSort1[i]);
+		printf("\t%d ", istSort1[i]);
 		printf("\n");
 	}
-	printf("%f", tempoBubble);
-	printf("\n%f", tempoInsert);
-	//printf("\n%d", tempoBubble);
+	printf("\n");
+	printf("Ordenacao 2\n");
+	for (i = 0; i < tamanho2; i++) {
+		printf("%d ", bbSort2[i]);
+		printf("\t%d ", istSort2[i]);
+		printf("\n");
+	}
+	printf("\n");
+	printf("Ordenacao 3\n");
+	for (i = 0; i < tamanho3; i++) {
+		printf("%d ", bbSort3[i]);
+		printf("\t%d ", istSort3[i]);
+		printf("\n");
+	}
+	printf("\n");
+	printf("Ordenacao 4\n");
+	for (i = 0; i < tamanho4; i++) {
+		printf("%d ", bbSort4[i]);
+		printf("\t%d ", istSort4[i]);
+		printf("\n");
+	}
+
+	printf("Tempo de ordenação do bubbleSort 1 = %f", tempoBubble1);
+	printf("\n");
+	printf("Tempo de ordenação do bubbleSort 2 = %f", tempoBubble2);
+	printf("\n");
+	printf("Tempo de ordenação do bubbleSort 3 = %f", tempoBubble3);
+	printf("\n");
+	printf("Tempo de ordenação do bubbleSort 4 = %f", tempoBubble4);
+	printf("\n");
+	printf("\n");
+
+	printf("Tempo de ordenação do insertSort1 = %f", tempoInsert1);
+	printf("\n");
+	printf("Tempo de ordenação do insertSort2 = %f", tempoInsert2);
+	printf("\n");
+	printf("Tempo de ordenação do insertSort3 = %f", tempoInsert3);
+	printf("\n");
+	printf("Tempo de ordenação do insertSort4 = %f", tempoInsert4);
+	printf("\n");
+	
 	
 	return 0;
 }

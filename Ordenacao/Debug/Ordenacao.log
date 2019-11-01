@@ -1,0 +1,4 @@
+﻿  Ordenacao.cpp
+c:\erich\faculdade\aps\3º semestre\programa\ordenacao\ordenacao.cpp(98): warning C4305: '=': truncation from '__int64' to 'int'
+c:\erich\faculdade\aps\3º semestre\programa\ordenacao\ordenacao.cpp(98): warning C4309: '=': truncation of constant value
+  Ordenacao.vcxproj -> C:\Erich\Faculdade\APS\3º Semestre\programa\Debug\Ordenacao.exe

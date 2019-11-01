@@ -1,4 +1,4 @@
 ﻿  Ordenacao.cpp
-c:\erich\faculdade\aps\3º semestre\programa\ordenacao\ordenacao.cpp(103): warning C4101: 'tempoMerger': unreferenced local variable
+c:\erich\faculdade\aps\3º semestre\programa\ordenacao\ordenacao.cpp(86): warning C4101: 'tempoMerger': unreferenced local variable
 c:\erich\faculdade\aps\3º semestre\programa\ordenacao\ordenacao.cpp(28): warning C4715: 'bubbleSort': not all control paths return a value
   Ordenacao.vcxproj -> C:\Erich\Faculdade\APS\3º Semestre\programa\Debug\Ordenacao.exe

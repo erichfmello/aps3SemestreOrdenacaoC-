@@ -13,17 +13,17 @@ void No(int *a, int *b) {
 	*b = temp;
 }
 
-void bubbleSort(int *v, int n) {
+double bubbleSort(int *v, int n) {
 	if (n < 1) {
-		return;
+		return 0;
 	}
-
+	
 	for (int i = 0; i < n; i++) {
 		if (v[i] > v[i + 1]) {
 			No(&v[i], &v[i + 1]);
 		}
 	}
-
+	
 	bubbleSort(v, n - 1);
 }
 
@@ -93,9 +93,9 @@ void mergeSort(int *saida, int *auxiliar, int inicio, int fim) {
 
 int main() {
 	int tamanho, i, *bbSort, *istSort, *mergeSort;
-	clock_t c1, c2;
+	double tempo, tempoBubble, tempoInsert, tempoMerger;
 
-	tamanho = rand();
+	tamanho = 1000;
 
 	bbSort = (int*)malloc(tamanho * sizeof(int));
 	istSort = (int*)malloc(tamanho * sizeof(int));
@@ -108,13 +108,13 @@ int main() {
 		mergeSort[i] = valor;
 	}
 	
-	c1 = clock() * 1000 / CLOCKS_PER_SEC;
-	bubbleSort(bbSort, tamanho - 1);
-	c2 = clock() * 1000 / CLOCKS_PER_SEC;
-	double tempoBublle = c1;
-	double tempoBublle2 = c2;
-
+	tempo = clock();
+	tempoBubble = bubbleSort(bbSort, tamanho - 1);
+	tempoBubble = clock() - tempo;
+	
+	tempo = clock();
 	insertionSort(istSort, tamanho);
+	tempoInsert = clock() - tempo;
 	
 	
 	for (i = 0; i < tamanho; i++) {
@@ -123,8 +123,9 @@ int main() {
 		printf("%d ", istSort[i]);
 		printf("\n");
 	}
-	printf("%lf", tempoBublle);
-	printf("\n%lf", tempoBublle2);
+	printf("%f", tempoBubble);
+	printf("\n%f", tempoInsert);
+	//printf("\n%d", tempoBubble);
 	
 	return 0;
 }
